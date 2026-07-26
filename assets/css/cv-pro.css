@@ -1,0 +1,1101 @@
+/* ==========================================================================
+   cv-pro.css — lapisan tema modern di atas live-resume.css
+   Dimuat SETELAH live-resume.css. Tidak dihasilkan oleh gulp/scss, jadi aman
+   dari proses build. Semua penyesuaian tampilan ada di file ini.
+
+   Daftar isi
+   1.  Token desain (warna, radius, bayangan)
+   2.  Dasar & tipografi
+   3.  Header / navigasi
+   4.  Sidebar (aside)
+   5.  Komponen sidebar: info, keahlian, bahasa
+   6.  Konten utama & judul bagian
+   7.  Timeline pengalaman & pendidikan
+   8.  Kartu kompetensi, sertifikat, kontak, portofolio
+   9.  Tombol
+   10. Footer
+   11. Aksesibilitas & gerak
+   12. Gaya cetak (PDF)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Token desain
+   -------------------------------------------------------------------------- */
+:root {
+    --bg: #eef1f6;
+    --bg-tint: #dfe6f5;
+    --surface: #ffffff;
+    --surface-2: #f7f8fb;
+    --ink: #0f172a;
+    --ink-soft: #334155;
+    --muted: #6b7280;
+    --faint: #9aa3b2;
+    --line: #e7e9ef;
+    --accent: #2563eb;
+    --accent-ink: #1d4ed8;
+    --accent-soft: #eef3ff;
+    --accent-line: #d7e2ff;
+
+    --radius-lg: 20px;
+    --radius-md: 14px;
+    --radius-sm: 10px;
+
+    --shadow-sm: 0 1px 2px rgba(15, 23, 42, .04);
+    --shadow-md: 0 1px 2px rgba(15, 23, 42, .04), 0 10px 24px -14px rgba(15, 23, 42, .18);
+    --shadow-lg: 0 1px 2px rgba(15, 23, 42, .04), 0 24px 48px -24px rgba(15, 23, 42, .22);
+
+    --font: 'Plus Jakarta Sans', 'Mukta', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #0b0f17;
+        --bg-tint: #111a2b;
+        --surface: #121826;
+        --surface-2: #171e2e;
+        --ink: #e8edf6;
+        --ink-soft: #c7d0de;
+        --muted: #93a0b4;
+        --faint: #74829a;
+        --line: #222b3c;
+        --accent: #60a5fa;
+        --accent-ink: #93c5fd;
+        --accent-soft: #16233c;
+        --accent-line: #24365a;
+
+        --shadow-sm: 0 1px 2px rgba(0, 0, 0, .4);
+        --shadow-md: 0 1px 2px rgba(0, 0, 0, .4), 0 12px 28px -16px rgba(0, 0, 0, .8);
+        --shadow-lg: 0 1px 2px rgba(0, 0, 0, .4), 0 28px 56px -28px rgba(0, 0, 0, .9);
+    }
+}
+
+/* --------------------------------------------------------------------------
+   2. Dasar & tipografi
+   -------------------------------------------------------------------------- */
+body {
+    padding: 0 !important;
+    font-family: var(--font) !important;
+    color: var(--ink) !important;
+    background-color: var(--bg) !important;
+    background-image:
+        radial-gradient(1100px 620px at 82% -12%, var(--bg-tint) 0%, transparent 62%),
+        radial-gradient(760px 460px at -8% 8%, var(--bg-tint) 0%, transparent 55%);
+    background-attachment: fixed;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body,
+main,
+aside,
+header {
+    font-family: var(--font) !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    letter-spacing: -.015em;
+}
+
+main p,
+main li {
+    color: var(--ink-soft);
+}
+
+a {
+    color: var(--accent);
+}
+
+a:hover {
+    color: var(--accent-ink);
+}
+
+/* Pembungkus halaman: lebar terkontrol dan terpusat di layar besar. */
+.content-wrapper {
+    gap: 28px;
+    max-width: 1240px;
+    margin: 0 auto 40px;
+    padding: 0 32px;
+    align-items: flex-start;
+}
+
+@media (max-width: 991px) {
+    .content-wrapper {
+        padding: 0 20px;
+        gap: 20px;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   3. Header / navigasi
+   -------------------------------------------------------------------------- */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+    gap: 12px;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 14px 32px !important;
+    background-color: rgba(255, 255, 255, .72) !important;
+    backdrop-filter: saturate(180%) blur(14px);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    border-bottom: 1px solid transparent;
+    transition: border-color .2s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+    header {
+        background-color: rgba(18, 24, 38, .72) !important;
+    }
+}
+
+@media (min-width: 992px) {
+    header {
+        padding-left: 32px !important;
+        margin-bottom: 8px;
+        border-bottom-color: var(--line);
+    }
+}
+
+@media (max-width: 991px) {
+    header {
+        position: fixed;
+        max-width: none;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        border-bottom-color: var(--line);
+        box-shadow: none;
+    }
+}
+
+/* Lebar nav bawaan dipatok 365px sehingga label panjang terpotong/turun baris. */
+@media (min-width: 992px) {
+    .collapsible-nav,
+    .collapsible-nav.show {
+        width: auto !important;
+        overflow: visible;
+    }
+
+    /* Menu sudah tampil penuh di layar besar, tombol hamburger tidak diperlukan. */
+    .btn-menu-toggle {
+        display: none !important;
+    }
+}
+
+.collapsible-nav .nav-link {
+    position: relative;
+    white-space: nowrap;
+    margin: 0 2px;
+    padding: 7px 14px !important;
+    height: auto !important;
+    border-radius: 999px;
+    color: var(--muted) !important;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .04em;
+    transition: color .18s ease, background-color .18s ease;
+}
+
+.collapsible-nav .nav-link:hover {
+    color: var(--ink) !important;
+    background-color: var(--surface-2);
+}
+
+.collapsible-nav .nav-link.active {
+    color: var(--accent-ink) !important;
+    background-color: var(--accent-soft);
+    border-bottom: 0 !important;
+    padding-bottom: 7px !important;
+}
+
+@media (max-width: 991px) {
+    .collapsible-nav {
+        top: 66px;
+        width: 232px !important;
+        padding: 16px !important;
+        background-color: var(--surface) !important;
+        border-left: 1px solid var(--line);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .collapsible-nav .nav-link {
+        width: 100%;
+        margin: 4px 0 !important;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   4. Sidebar (aside)
+   -------------------------------------------------------------------------- */
+aside {
+    width: 312px;
+    min-width: 312px;
+    padding: 28px 24px !important;
+    background-color: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+@media (min-width: 992px) {
+    aside {
+        position: sticky;
+        top: 84px;
+    }
+}
+
+@media (max-width: 991px) {
+    aside {
+        width: 100%;
+        min-width: 0;
+    }
+}
+
+aside .profile-img-wrapper img {
+    width: 96px !important;
+    height: 96px !important;
+    object-fit: cover;
+    border: 3px solid var(--surface);
+    box-shadow: 0 0 0 2px var(--accent-line), var(--shadow-md);
+}
+
+aside .profile-name {
+    margin-top: 16px;
+    margin-bottom: 2px;
+    font-size: 21px !important;
+    font-weight: 700 !important;
+    line-height: 1.25 !important;
+    letter-spacing: -.02em;
+    color: var(--ink);
+}
+
+.profile-headline {
+    margin-bottom: 18px;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.6;
+}
+
+aside .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 22px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--line);
+}
+
+aside .social-links .social-link {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 34px !important;
+    height: 34px !important;
+    margin-right: 0 !important;
+    padding: 0 !important;
+    font-size: 13px !important;
+    color: var(--muted) !important;
+    background-color: var(--surface-2) !important;
+    border: 1px solid var(--line);
+    transition: color .18s ease, background-color .18s ease, transform .18s ease;
+}
+
+aside .social-links .social-link:hover {
+    color: #fff !important;
+    background-color: var(--accent) !important;
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+/* Widget di dalam sidebar tidak lagi jadi kartu terpisah — sidebar itu sendiri
+   sudah satu kartu, jadi cukup dipisah garis tipis. */
+aside .widget,
+aside .widget.card {
+    margin-bottom: 22px !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    text-align: left;
+}
+
+aside .widget .card-body {
+    padding: 0 !important;
+}
+
+aside .widget:not(:last-child) {
+    padding-bottom: 22px !important;
+    border-bottom: 1px solid var(--line) !important;
+}
+
+aside .widget-title,
+aside .widget.card .widget-title {
+    margin-bottom: 14px !important;
+    color: var(--faint) !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+}
+
+/* --------------------------------------------------------------------------
+   5. Komponen sidebar: info, keahlian, bahasa
+   -------------------------------------------------------------------------- */
+.info-list {
+    margin: 0 0 18px;
+    padding: 0;
+    list-style: none;
+}
+
+.info-list li {
+    margin-bottom: 12px;
+    font-size: 13.5px;
+    font-weight: 500;
+    line-height: 1.45;
+    color: var(--ink);
+    word-break: break-word;
+}
+
+.info-list li:last-child {
+    margin-bottom: 0;
+}
+
+.info-list .info-label {
+    display: block;
+    margin-bottom: 2px;
+    color: var(--faint);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+.info-list a {
+    color: var(--ink);
+    text-decoration: none;
+    transition: color .18s ease;
+}
+
+.info-list a:hover {
+    color: var(--accent);
+}
+
+.skill-group + .skill-group {
+    margin-top: 16px;
+}
+
+.skill-group-title {
+    margin-bottom: 8px;
+    color: var(--muted);
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+.tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.tag-list li {
+    padding: 5px 11px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface-2);
+    color: var(--ink-soft);
+    font-size: 11.5px;
+    font-weight: 500;
+    line-height: 1.4;
+    transition: border-color .18s ease, color .18s ease;
+}
+
+.tag-list li:hover {
+    border-color: var(--accent-line);
+    color: var(--accent-ink);
+}
+
+/* --------------------------------------------------------------------------
+   6. Konten utama & judul bagian
+   -------------------------------------------------------------------------- */
+main {
+    padding: 40px 44px 32px !important;
+    background-color: var(--surface) !important;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--shadow-md);
+}
+
+@media (max-width: 767px) {
+    main {
+        padding: 28px 22px 24px !important;
+    }
+}
+
+main p {
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    line-height: 1.72 !important;
+}
+
+main .section-title {
+    margin-bottom: 24px !important;
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    letter-spacing: -.02em;
+    color: var(--ink);
+}
+
+main .section-subtitle {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: var(--accent) !important;
+    font-size: 10.5px !important;
+    font-weight: 700 !important;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+}
+
+main .intro-section {
+    margin-bottom: 44px;
+}
+
+main .intro-section .section-title {
+    margin-bottom: 14px !important;
+}
+
+main .resume-section,
+main .services-section,
+main .credentials-section,
+main .reference-section,
+main .portfolio-section,
+main .contact-section {
+    margin-bottom: 44px;
+}
+
+.section-note {
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+}
+
+/* --------------------------------------------------------------------------
+   7. Timeline
+   -------------------------------------------------------------------------- */
+main .time-line-item {
+    padding-left: 32px !important;
+    padding-bottom: 30px !important;
+    line-height: normal !important;
+}
+
+main .time-line-item::before {
+    left: 5px;
+    width: 2px !important;
+    background: linear-gradient(to bottom, var(--accent-line), var(--line)) !important;
+}
+
+/* Rel timeline tidak perlu diteruskan setelah item terakhir. */
+main .time-line-item:last-child::before {
+    display: none;
+}
+
+main .time-line-item::after {
+    top: 6px !important;
+    width: 10px !important;
+    height: 10px !important;
+    background-color: var(--accent) !important;
+    box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+main .time-line-item:nth-child(2n)::after {
+    background-color: var(--accent) !important;
+}
+
+main .time-line-item .badge {
+    display: inline-block;
+    margin-bottom: 10px !important;
+    padding: 5px 11px !important;
+    border-radius: 999px !important;
+    background-color: var(--accent-soft) !important;
+    color: var(--accent-ink) !important;
+    font-size: 10.5px !important;
+    font-weight: 700 !important;
+    letter-spacing: .06em;
+}
+
+main .time-line-item-title {
+    margin-bottom: 3px !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    line-height: 1.35 !important;
+    letter-spacing: -.01em;
+    color: var(--ink);
+}
+
+main .time-line-item-subtitle {
+    margin-bottom: 8px !important;
+    font-size: 12.5px !important;
+    font-weight: 500 !important;
+    line-height: 1.5 !important;
+    color: var(--muted) !important;
+}
+
+main .time-line-item-content {
+    font-size: 13.5px !important;
+    line-height: 1.7 !important;
+    color: var(--ink-soft);
+}
+
+/* Poin pencapaian */
+.achievement-list {
+    margin: 0;
+    padding-left: 18px;
+    list-style: none;
+}
+
+.achievement-list li {
+    position: relative;
+    margin-bottom: 7px;
+    font-size: 13.5px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--ink-soft);
+}
+
+.achievement-list li:last-child {
+    margin-bottom: 0;
+}
+
+.achievement-list li::before {
+    content: "";
+    position: absolute;
+    left: -18px;
+    top: .62em;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: .55;
+}
+
+.achievement-list strong {
+    color: var(--ink);
+    font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   8. Kartu: kompetensi, sertifikat, kontak, portofolio
+   -------------------------------------------------------------------------- */
+main .service-card {
+    padding: 20px !important;
+    margin-bottom: 16px;
+    border: 1px solid var(--line) !important;
+    border-radius: var(--radius-md);
+    background: var(--surface);
+    transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+
+/* Netralkan pembatas bawaan template yang memakai border kanan/bawah. */
+main .service-card:first-child,
+main .service-card:nth-child(3) {
+    border-right: 1px solid var(--line) !important;
+}
+
+@media (min-width: 992px) {
+    main .services-section .row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+        margin: 0;
+    }
+
+    main .services-section .service-card {
+        max-width: none;
+        flex: none;
+        margin-bottom: 0;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+}
+
+main .service-card:hover {
+    border-color: var(--accent-line) !important;
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+main .service-card .service-icon {
+    flex: 0 0 auto;
+    width: 42px !important;
+    height: 42px !important;
+    margin-right: 14px !important;
+    padding: 9px;
+    border-radius: var(--radius-sm);
+    background: var(--accent-soft);
+}
+
+main .service-card .service-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+main .service-card .service-title {
+    margin-bottom: 6px !important;
+    font-size: 14.5px !important;
+    font-weight: 700 !important;
+    line-height: 1.35 !important;
+    color: var(--ink);
+}
+
+main .service-card .service-description {
+    max-width: none !important;
+    font-size: 13px !important;
+    line-height: 1.65 !important;
+    color: var(--muted) !important;
+}
+
+.credential-card {
+    padding: 20px 22px;
+    margin-bottom: 12px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+    transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.credential-card:hover {
+    border-color: var(--accent-line);
+    box-shadow: var(--shadow-md);
+}
+
+.credential-card-title {
+    margin-bottom: 3px;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+}
+
+.credential-card-meta {
+    margin-bottom: 8px !important;
+    color: var(--faint) !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    letter-spacing: .02em;
+}
+
+.credential-card p:last-child {
+    margin-bottom: 0;
+}
+
+main .contact-card {
+    padding: 22px !important;
+    border: 1px solid var(--line) !important;
+    border-radius: var(--radius-md) !important;
+    background: var(--surface) !important;
+    box-shadow: none !important;
+    transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+main .contact-card:hover {
+    border-color: var(--accent-line) !important;
+    box-shadow: var(--shadow-md);
+}
+
+main .contact-card-title {
+    margin-bottom: 6px !important;
+    color: var(--faint) !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+}
+
+main .contact-card-content {
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    color: var(--ink) !important;
+}
+
+main .contact-card-content a {
+    color: var(--ink) !important;
+    text-decoration: none;
+}
+
+main .contact-card-content a:hover {
+    color: var(--accent) !important;
+}
+
+main .form-control {
+    padding: 12px 16px !important;
+    height: auto !important;
+    border: 1px solid var(--line) !important;
+    border-radius: var(--radius-sm) !important;
+    background-color: var(--surface-2) !important;
+    color: var(--ink) !important;
+    font-size: 13.5px !important;
+    transition: border-color .18s ease, box-shadow .18s ease;
+}
+
+main .form-control::placeholder {
+    color: var(--faint) !important;
+    letter-spacing: .04em;
+}
+
+main .form-control:focus {
+    border-color: var(--accent) !important;
+    background-color: var(--surface) !important;
+    box-shadow: 0 0 0 3px var(--accent-soft) !important;
+}
+
+main .portfolio-item {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+main .map-wrapper {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--line);
+}
+
+/* --------------------------------------------------------------------------
+   9. Tombol
+   -------------------------------------------------------------------------- */
+.btn-primary {
+    background-color: var(--accent) !important;
+    border-color: var(--accent) !important;
+    color: #fff !important;
+    box-shadow: 0 1px 2px rgba(37, 99, 235, .28);
+    transition: background-color .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-ink) !important;
+    border-color: var(--accent-ink) !important;
+    box-shadow: 0 6px 16px -6px rgba(37, 99, 235, .6);
+    transform: translateY(-1px);
+}
+
+.btn-download-cv {
+    width: 100%;
+    justify-content: center;
+    padding: 11px 20px !important;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .06em;
+}
+
+.btn-share {
+    height: auto !important;
+    padding: 8px 18px !important;
+    border: 1px solid var(--line) !important;
+    border-radius: 999px !important;
+    background-color: var(--surface) !important;
+    color: var(--ink-soft) !important;
+    font-size: 11.5px !important;
+    font-weight: 600 !important;
+    letter-spacing: .06em;
+    transition: border-color .18s ease, box-shadow .18s ease;
+}
+
+.btn-share:hover {
+    border-color: var(--accent-line) !important;
+    background-color: var(--surface) !important;
+    box-shadow: var(--shadow-sm) !important;
+}
+
+.btn-menu-toggle {
+    background-color: var(--surface) !important;
+    border: 1px solid var(--line) !important;
+}
+
+.btn-img {
+    height: 11px;
+    opacity: .85;
+}
+
+.action-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+/* Template aslinya memakai font 8px untuk tombol ini — terlalu kecil untuk CTA. */
+.action-row .btn {
+    padding: 11px 22px !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    letter-spacing: .06em;
+    line-height: 1.2 !important;
+    border-radius: 999px;
+}
+
+.action-row .btn-white {
+    background-color: var(--surface) !important;
+    border: 1px solid var(--line) !important;
+    color: var(--ink-soft) !important;
+}
+
+.action-row .btn-white:hover {
+    border-color: var(--accent-line) !important;
+    color: var(--accent-ink) !important;
+    box-shadow: var(--shadow-sm);
+}
+
+main .form-submit-btn {
+    padding: 12px 28px !important;
+    border-radius: 999px !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    letter-spacing: .06em;
+}
+
+/* --------------------------------------------------------------------------
+   10. Footer
+   -------------------------------------------------------------------------- */
+main footer {
+    margin-top: 8px;
+    padding-top: 22px;
+    border-top: 1px solid var(--line);
+    color: var(--faint) !important;
+    font-size: 11.5px !important;
+    text-align: center;
+}
+
+main footer a {
+    color: var(--muted) !important;
+    text-decoration: none;
+}
+
+main footer a:hover {
+    color: var(--accent) !important;
+}
+
+/* --------------------------------------------------------------------------
+   11. Aksesibilitas & gerak
+   -------------------------------------------------------------------------- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Gambar ikon SVG agar tetap terbaca di mode gelap. */
+@media (prefers-color-scheme: dark) {
+    main .service-card .service-icon img,
+    .btn-img {
+        filter: brightness(1.6);
+    }
+}
+
+/* ==========================================================================
+   12. Gaya cetak — hasil "Unduh CV (PDF)" via Print → Save as PDF.
+   ========================================================================== */
+@media print {
+    @page {
+        size: A4;
+        margin: 14mm 12mm;
+    }
+
+    :root {
+        --ink: #000;
+        --ink-soft: #1a1a1a;
+        --muted: #444;
+        --faint: #666;
+        --line: #c9c9c9;
+        --accent: #1a56db;
+        --accent-ink: #1a56db;
+        --accent-soft: #eef3ff;
+        --surface: #fff;
+        --surface-2: #fff;
+    }
+
+    html,
+    body {
+        width: 100%;
+        background: #fff !important;
+        background-image: none !important;
+        color: #000;
+        font-size: 10.5pt;
+    }
+
+    header,
+    .btn,
+    .social-links,
+    .carousel-indicators,
+    .map-wrapper,
+    .contact-form,
+    .no-print {
+        display: none !important;
+    }
+
+    .content-wrapper {
+        display: block !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+    }
+
+    aside,
+    main {
+        position: static !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        border: 0 !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        background: transparent !important;
+        overflow: visible !important;
+        height: auto !important;
+    }
+
+    aside {
+        margin-bottom: 6mm !important;
+        padding-bottom: 4mm !important;
+        border-bottom: 1pt solid #999 !important;
+    }
+
+    /* live-resume.css memusatkan hampir semua isi aside; di cetak rata kiri lebih rapi. */
+    aside *,
+    aside .widget-content {
+        text-align: left !important;
+    }
+
+    aside .profile-img-wrapper {
+        float: left;
+        width: 24mm;
+        margin: 0 6mm 2mm 0;
+        padding: 0;
+    }
+
+    aside .profile-img-wrapper img {
+        width: 100% !important;
+        height: auto !important;
+        border: 0 !important;
+        box-shadow: none !important;
+    }
+
+    aside .profile-name {
+        margin-top: 0;
+        font-size: 19pt !important;
+        line-height: 1.2 !important;
+    }
+
+    .profile-headline {
+        margin-bottom: .4rem;
+        letter-spacing: .08em;
+    }
+
+    aside .widget,
+    aside .widget.card {
+        margin-bottom: 4mm !important;
+        padding-bottom: 0 !important;
+        border: 0 !important;
+        border-bottom: 0 !important;
+        page-break-inside: avoid;
+    }
+
+    aside .widget:not(:last-child) {
+        border-bottom: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    .info-list {
+        column-count: 2;
+        column-gap: 8mm;
+    }
+
+    .info-list li {
+        break-inside: avoid;
+        margin-bottom: .3rem;
+    }
+
+    .tag-list li {
+        border-color: #bbb;
+        background: transparent;
+    }
+
+    main .section-title {
+        font-size: 13pt !important;
+        margin-bottom: .35rem !important;
+    }
+
+    main p,
+    .achievement-list li {
+        font-size: 10pt !important;
+    }
+
+    section {
+        page-break-inside: avoid;
+        margin-bottom: 6mm !important;
+        padding: 0 !important;
+    }
+
+    main .service-card,
+    .credential-card,
+    main .contact-card {
+        box-shadow: none !important;
+        page-break-inside: avoid;
+    }
+
+    main .time-line-item {
+        page-break-inside: avoid;
+    }
+
+    main footer {
+        display: none !important;
+    }
+
+    /* Sembunyikan bagian yang tidak relevan di berkas lamaran cetak. */
+    .testimonial-section,
+    .clients-section {
+        display: none !important;
+    }
+
+    a[href^="http"]::after {
+        content: " (" attr(href) ")";
+        font-size: 8pt;
+        color: #555;
+        word-break: break-all;
+    }
+
+    .social-link::after,
+    nav a::after {
+        content: "" !important;
+    }
+}
