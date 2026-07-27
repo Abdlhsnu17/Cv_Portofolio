@@ -4,14 +4,20 @@ Selamat datang di repositori website portofolio saya. Proyek ini dibuat untuk me
 
 ## 🚀 Teknologi yang Digunakan
 
-Proyek ini dibangun menggunakan teknologi front-end standar industri:
+Halaman CV (Profil, CV Lengkap, Portofolio, Kontak) memakai sistem desain sendiri
+tanpa kerangka kerja apa pun:
 
 -   **HTML5**: Untuk struktur konten website.
--   **CSS3**: Untuk styling dan desain visual.
--   **JavaScript**: Untuk fungsionalitas interaktif.
--   **[Bootstrap](https://getbootstrap.com/)**: Kerangka kerja CSS untuk membangun antarmuka yang responsif dan mobile-first.
--   **[jQuery](https://jquery.com/)**: Pustaka JavaScript untuk mempermudah manipulasi DOM dan event handling.
--   **[Popper.js](https://popper.js.org/)**: Mesin penempatan untuk _tooltips_ dan _popovers_ yang menjadi dependensi Bootstrap.
+-   **CSS3**: `assets/css/cv2026.css` — seluruh tampilan (tema terang & gelap, tata letak
+    responsif, dan gaya cetak untuk PDF) ada di satu file ini.
+-   **JavaScript**: `assets/js/cv2026.js` — menu mobile, tombol Bagikan, tombol Unduh CV
+    (memanggil dialog cetak browser), dan animasi saat konten masuk layar. Tanpa dependensi.
+-   **[Font Awesome](https://fontawesome.com/)**: Ikon.
+
+> Berkas lama dari template *Live Resume* (`assets/css/live-resume.css`, `assets/css/cv-pro.css`,
+> `assets/js/live-resume.js`, `assets/js/cv-pro.js`, Bootstrap/jQuery di `assets/vendors/`) masih
+> ada karena dipakai `pages/blog.html` yang belum ikut didesain ulang. Aman dihapus bila `pages/blog.html`
+> tidak dipakai.
 
 ## 🛠️ Instalasi dan Penggunaan
 
@@ -33,6 +39,7 @@ Struktur direktori proyek ini diatur sebagai berikut untuk kemudahan pemeliharaa
 ```
 Cv_Portofolio/
 ├── index.html                # Halaman utama portofolio
+├── pages/                    # Halaman tambahan (CV, portofolio, kontak, blog)
 ├── assets/
 │   ├── css/                  # File CSS kustom
 │   ├── images/               # Gambar dan aset visual
