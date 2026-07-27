@@ -288,7 +288,7 @@
         y += 5;
         doc.setTextColor(90, 90, 90);
         doc.setFont('helvetica', 'normal');
-        doc.text('Jakarta - Program studi: (isi di sini)', left, y);
+        doc.text('Jakarta - Program studi: (Teknik Informatika)', left, y);
         y += 8;
         doc.setTextColor(13, 18, 32);
         doc.setFont('helvetica', 'bold');
