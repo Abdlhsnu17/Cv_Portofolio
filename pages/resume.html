@@ -35,8 +35,8 @@
             <div class="header-actions">
                 <button class="btn btn-ghost btn-share" type="button"><i class="fas fa-share-alt"
                         aria-hidden="true"></i>Bagikan</button>
-                <a class="btn btn-solid btn-download-cv" href="../assets/files/cv-fikri-abdillah-sanubari.pdf"
-                    download><i class="fas fa-download" aria-hidden="true"></i>Unduh CV</a>
+                <button class="btn btn-solid btn-download-cv" type="button" data-generate-pdf><i
+                        class="fas fa-download" aria-hidden="true"></i>Unduh CV</button>
                 <button class="nav-toggle" type="button" aria-label="Buka menu" aria-controls="site-nav"
                     aria-expanded="false"><i class="fas fa-bars" aria-hidden="true"></i></button>
             </div>
@@ -189,36 +189,71 @@
 
             <div class="side-card">
                 <h2 class="side-card-title"><i class="fas fa-star" aria-hidden="true"></i>Keahlian</h2>
+                <div class="skill-editor no-print" aria-label="Atur skala keahlian">
+                    <label>
+                        <span>Entri &amp; validasi data</span>
+                        <input type="range" min="0" max="100" step="1" data-skill-target="data-entry">
+                    </label>
+                    <label>
+                        <span>Pengarsipan dokumen</span>
+                        <input type="range" min="0" max="100" step="1" data-skill-target="filing">
+                    </label>
+                    <label>
+                        <span>Microsoft Excel</span>
+                        <input type="range" min="0" max="100" step="1" data-skill-target="excel">
+                    </label>
+                    <label>
+                        <span>Quality Control</span>
+                        <input type="range" min="0" max="100" step="1" data-skill-target="quality-control">
+                    </label>
+                    <label>
+                        <span>Microsoft Word</span>
+                        <input type="range" min="0" max="100" step="1" data-skill-target="word">
+                    </label>
+                    <label>
+                        <span>Pelayanan operasional</span>
+                        <input type="range" min="0" max="100" step="1" data-skill-target="service">
+                    </label>
+                    <label>
+                        <span>Adobe Photoshop</span>
+                        <input type="range" min="0" max="100" step="1" data-skill-target="photoshop">
+                    </label>
+                    <label>
+                        <span>HTML &amp; CSS dasar</span>
+                        <input type="range" min="0" max="100" step="1" data-skill-target="html-css">
+                    </label>
+                    <p>Geser angka, lalu PDF perlu dibuat ulang agar file unduhan ikut berubah.</p>
+                </div>
                 <div class="skill-bars" aria-label="Tingkat keahlian">
-                    <div class="skill-bar" data-level="88">
+                    <div class="skill-bar" data-skill-id="data-entry" data-level="88">
                         <div class="skill-bar-top"><span>Entri &amp; validasi data</span><strong></strong></div>
                         <div class="skill-track"><span></span></div>
                     </div>
-                    <div class="skill-bar" data-level="86">
+                    <div class="skill-bar" data-skill-id="filing" data-level="86">
                         <div class="skill-bar-top"><span>Pengarsipan dokumen</span><strong></strong></div>
                         <div class="skill-track"><span></span></div>
                     </div>
-                    <div class="skill-bar" data-level="85">
+                    <div class="skill-bar" data-skill-id="excel" data-level="85">
                         <div class="skill-bar-top"><span>Microsoft Excel</span><strong></strong></div>
                         <div class="skill-track"><span></span></div>
                     </div>
-                    <div class="skill-bar" data-level="82">
+                    <div class="skill-bar" data-skill-id="quality-control" data-level="82">
                         <div class="skill-bar-top"><span>Quality Control</span><strong></strong></div>
                         <div class="skill-track"><span></span></div>
                     </div>
-                    <div class="skill-bar" data-level="80">
+                    <div class="skill-bar" data-skill-id="word" data-level="80">
                         <div class="skill-bar-top"><span>Microsoft Word</span><strong></strong></div>
                         <div class="skill-track"><span></span></div>
                     </div>
-                    <div class="skill-bar" data-level="76">
+                    <div class="skill-bar" data-skill-id="service" data-level="76">
                         <div class="skill-bar-top"><span>Pelayanan operasional</span><strong></strong></div>
                         <div class="skill-track"><span></span></div>
                     </div>
-                    <div class="skill-bar" data-level="72">
+                    <div class="skill-bar" data-skill-id="photoshop" data-level="72">
                         <div class="skill-bar-top"><span>Adobe Photoshop</span><strong></strong></div>
                         <div class="skill-track"><span></span></div>
                     </div>
-                    <div class="skill-bar" data-level="68">
+                    <div class="skill-bar" data-skill-id="html-css" data-level="68">
                         <div class="skill-bar-top"><span>HTML &amp; CSS dasar</span><strong></strong></div>
                         <div class="skill-track"><span></span></div>
                     </div>
