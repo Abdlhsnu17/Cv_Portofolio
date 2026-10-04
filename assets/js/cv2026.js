@@ -43,6 +43,32 @@
         window.addEventListener('scroll', syncHeader, { passive: true });
     }
 
+    /* Progress halaman dan tombol kembali ke atas ---------------------- */
+    var progress = document.querySelector('.scroll-progress span');
+    var backToTop = document.querySelector('.back-to-top');
+
+    function syncScrollTools() {
+        var scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        var percentage = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+
+        if (progress) {
+            progress.style.width = percentage + '%';
+        }
+
+        if (backToTop) {
+            backToTop.classList.toggle('is-visible', window.scrollY > 520);
+        }
+    }
+
+    syncScrollTools();
+    window.addEventListener('scroll', syncScrollTools, { passive: true });
+
+    if (backToTop) {
+        backToTop.addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+        });
+    }
+
     var skillStorageKey = 'cv2026.skillLevels';
 
     function readStoredSkillLevels() {
