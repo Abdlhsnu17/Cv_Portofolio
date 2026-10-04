@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+# Tambahkan URL sitemap setelah situs memiliki domain publik.

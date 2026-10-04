@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "gulp style",
+    "test": "node --check assets/js/cv2026.js"
   },
   "author": "",
   "license": "ISC",
