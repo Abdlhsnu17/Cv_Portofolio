@@ -236,7 +236,7 @@
             doc.setFontSize(10.5);
             doc.text('Administrasi - Quality Control - Pelayanan Operasional', left, 26);
             doc.setFontSize(8.8);
-            doc.text('Jakarta Timur | +62 878-8886-8060 | abdillahsanubari@gmail.com | 17 Maret 1998', left, 34);
+            doc.text('Jakarta Timur | +62 878-8886-8060 | abdillahsanubari@gmail.com | Siap bekerja - Jabodetabek', left, 34);
 
             if (profileImage) {
                 doc.setFillColor(255, 255, 255);

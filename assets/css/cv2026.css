@@ -1568,6 +1568,37 @@ strong {
 /* --------------------------------------------------------------------------
    13. Formulir & peta
    -------------------------------------------------------------------------- */
+.section-intro { max-width: 680px; margin: 10px 0 0; color: var(--muted); line-height: 1.7; }
+.case-grid { display: grid; gap: 22px; }
+.case-card { display: grid; grid-template-columns: 220px 1fr; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--surface); box-shadow: var(--shadow-sm); }
+.case-media { position: relative; min-height: 220px; background: var(--surface-3); }
+.case-media img { width: 100%; height: 100%; object-fit: cover; }
+.case-number { position: absolute; top: 14px; left: 14px; padding: 6px 9px; border-radius: 8px; color: #fff; background: var(--accent); font-size: 11px; font-weight: 800; }
+.case-content { padding: 24px; }
+.case-label { color: var(--accent-ink); font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.case-content h3 { margin: 8px 0 17px; font-size: 20px; }
+.star-list { margin: 0 0 16px; }
+.star-list > div { display: grid; grid-template-columns: 64px 1fr; gap: 10px; margin-top: 9px; }
+.star-list dt { color: var(--accent-ink); font-size: 12px; font-weight: 800; }
+.star-list dd { margin: 0; color: var(--ink-soft); font-size: 13px; line-height: 1.55; }
+.tool-tag { display: inline-block; margin: 4px 4px 0 0; padding: 5px 9px; border-radius: 999px; color: var(--accent-ink); background: var(--accent-soft); font-size: 11px; font-weight: 700; }
+.process-section { background: linear-gradient(135deg, var(--surface) 0%, var(--accent-soft) 100%); border-radius: var(--radius-lg); }
+.process-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.process-step { padding: 18px; border: 1px solid var(--accent-line); border-radius: var(--radius-md); background: rgba(255,255,255,.72); }
+.process-step > span { color: var(--accent); font-size: 12px; font-weight: 800; }
+.process-step h3 { margin: 10px 0 7px; font-size: 16px; }
+.process-step p, .proof-card p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
+.proof-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.proof-card { display: flex; gap: 14px; padding: 18px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface-2); }
+.proof-card > i { color: var(--accent); font-size: 19px; }
+.proof-card h3 { margin: 0 0 5px; font-size: 15px; }
+.proof-card a { color: var(--accent-ink); font-weight: 700; }
+.cta-section { padding: 34px; border-radius: var(--radius-lg); color: #fff; background: var(--grad); }
+.cta-section .eyebrow, .cta-section .section-title, .cta-section .lead { color: #fff; }
+.cta-section .btn-solid { color: var(--accent-ink); background: #fff; }
+.legacy-gallery { padding-top: 10px; }
+@media (max-width: 700px) { .case-card { grid-template-columns: 1fr; } .case-media { min-height: 180px; max-height: 220px; } .process-grid, .proof-grid { grid-template-columns: 1fr; } .case-content { padding: 18px; } }
+
 .form-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
